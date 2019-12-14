@@ -55,9 +55,23 @@ public class ArgumentParser {
 		try {
 			final CommandLineParser parser = new PosixParser();
 			CommandLine cmd = parser.parse(options, args);
-			if (cmd.hasOption(graphPath.getOpt())) {
-				parameters.setGraphFile(cmd.getOptionValue(graphPath.getOpt()));
+			
+			switch (cmd.getOptionValue(graphPath.getOpt())) {
+			case "ba":
+				parameters.setTypeGraph(GraphType.BA_GENERATOR);
+				break;
+			case "npa":
+				parameters.setTypeGraph(GraphType.NPA_GENERATOR);
+				break;
+			case "as":
+				parameters.setTypeGraph(GraphType.BA_ASGRAPH);
+				break;
+			default:
+				break;
+
 			}
+			parameters.setEDistr(Integer.parseInt(cmd.getOptionValue(eDistr.getOpt())));
+
 			if (cmd.hasOption(simulations.getOpt())) {
 				for (String string : cmd.getOptionValue(simulations.getOpt()).split(",")) {
 					switch (string) {
@@ -77,7 +91,7 @@ public class ArgumentParser {
 			}
 			if (cmd.hasOption(vDistr.getOpt())) {
 				parameters.setVDistr(Integer.parseInt(cmd.getOptionValue(vDistr.getOpt())));
-			} 
+			}
 			if (cmd.hasOption(eDistr.getOpt())) {
 				parameters.setEDistr(Integer.parseInt(cmd.getOptionValue(eDistr.getOpt())));
 			}

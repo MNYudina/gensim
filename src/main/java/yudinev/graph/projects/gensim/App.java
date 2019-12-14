@@ -73,8 +73,9 @@ public class App {
 
 		LOG.info("Loading graph from {} file.", parameters.getGraphFile());
 		startTime = System.nanoTime();
+		parameters.getGraphFile();
 		try {
-			graph = loadGraph(parameters.getGraphFile());
+			graph = loadGraph("/graph/MyAs.net");
 			LOG.info("Graph successfully loaded in {}.", FormatUtils.durationToHMS(System.nanoTime() - startTime));
 		} catch (IOException e) {
 			LOG.error("Failed to load graph from {} file.", parameters.getGraphFile());

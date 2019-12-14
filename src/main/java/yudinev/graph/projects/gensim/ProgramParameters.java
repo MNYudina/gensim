@@ -3,6 +3,8 @@ package yudinev.graph.projects.gensim;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.uci.ics.jung.graph.Graph;
+
 /**
  * @author yudinev
  */
@@ -10,7 +12,9 @@ public class ProgramParameters {
 
     private Map<String, Boolean> operations;
     
-    private String graphFile;
+    //private String graphFile;
+    Graph graph;
+    GraphType type;
 
     private int eDistr;
     
@@ -40,12 +44,12 @@ public class ProgramParameters {
     
     
 	
-	public String getGraphFile() {
-        return graphFile;
+	public Graph getGraphFile() {
+        return graph;
     }
 
-    public void setGraphFile(String graphFile) {
-        this.graphFile = graphFile;
+    public void setGraph(Graph graph) {
+        this.graph = graph;
     }
     
     public int getVDistr() {
@@ -63,5 +67,11 @@ public class ProgramParameters {
     public void setEDistr(int eDistr) {
         this.eDistr = eDistr;
     }
+
+
+	public void setTypeGraph(GraphType type) {
+        this.type = type;
+
+	}
     
 }
