@@ -30,7 +30,7 @@ public class ArgumentParser {
 				.withDescription("List of available simulations:\n" + "n - nodes removal process simulation ,\n"
 						+ "e - nodes and edges removal process simulation,\n" + "v - SIS-model simulation,\n")
 				.create("s");
-		vDistr = OptionBuilder.withType(Integer.class).isRequired(false).hasArg(true).withLongOpt("v_dister")
+		vDistr = OptionBuilder.withType(Integer.class).isRequired(false).hasArg(true).withLongOpt("v_distr")
 				.withDescription("This parameter sets number of runs used by sampling algorithms only.").create("d");
 		eDistr = OptionBuilder.withType(Integer.class).isRequired(false).hasArg(true).withLongOpt("e_dister")
 				.withDescription("This parameter sets number of parallel threads.").create("e");
@@ -42,7 +42,7 @@ public class ArgumentParser {
 	 * Parses input <code>args</code> and returns the instance of
 	 * <code>yudinev.graph.projects.gensim.ProgramParameters</code>.
 	 *
-	 * @author yudinev
+	 * @author yudinev, Gleepa
 	 * @param args input arguments
 	 * @return the the instance of
 	 *         <code>yudinev.graph.projects.gensim.ProgramParameters</code> if input
@@ -64,13 +64,13 @@ public class ArgumentParser {
 				parameters.setTypeGraph(GraphType.NPA_GENERATOR);
 				break;
 			case "as":
-				parameters.setTypeGraph(GraphType.BA_ASGRAPH);
+				parameters.setTypeGraph(GraphType.AS_GRAPH);
 				break;
 			default:
 				break;
 
 			}
-			parameters.setEDistr(Integer.parseInt(cmd.getOptionValue(eDistr.getOpt())));
+			//parameters.setEDistr(Integer.parseInt(cmd.getOptionValue(eDistr.getOpt())));
 
 			if (cmd.hasOption(simulations.getOpt())) {
 				for (String string : cmd.getOptionValue(simulations.getOpt()).split(",")) {

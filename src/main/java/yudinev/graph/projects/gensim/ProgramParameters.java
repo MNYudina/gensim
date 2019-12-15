@@ -12,13 +12,11 @@ public class ProgramParameters {
 
     private Map<String, Boolean> operations;
     
-    //private String graphFile;
-    Graph graph;
     GraphType type;
 
-    private int eDistr;
+    private int eDistr=0;
     
-    private int vDistr;
+    private int vDistr=0;
     
     public ProgramParameters() {
     	operations = new HashMap<String, Boolean>();
@@ -44,14 +42,7 @@ public class ProgramParameters {
     
     
 	
-	public Graph getGraphFile() {
-        return graph;
-    }
 
-    public void setGraph(Graph graph) {
-        this.graph = graph;
-    }
-    
     public int getVDistr() {
 		return vDistr;
 	}
