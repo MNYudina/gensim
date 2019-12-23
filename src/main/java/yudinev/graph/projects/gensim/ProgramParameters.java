@@ -12,7 +12,7 @@ public class ProgramParameters {
 
     private Map<String, Boolean> operations;
     
-    GraphType type;
+     GraphType type;
 
     private int eDistr=0;
     
@@ -26,17 +26,18 @@ public class ProgramParameters {
 	}
    
     
-	public void setIsNodeRemovalSimulationFlag() {
+	public void setNodeRemovalSimulationFlag() {
     	operations.put("isNodeRemovalRequested", true);
     }
     
+	
     
-    public void setIsEdgeRemovalSimulationFlag() {
+    public void setEdgeRemovalSimulationFlag() {
     	operations.put("isEdgeRemovalRequested", true);
     }
     
     
-    public void setIsSISSimulationFlag() {
+    public void setSISSimulationFlag() {
     	operations.put("isSISRequested", true);
     }
     
@@ -63,6 +64,18 @@ public class ProgramParameters {
 	public void setTypeGraph(GraphType type) {
         this.type = type;
 
+	}
+
+
+	public boolean isNodeRemovalSimulation() {
+		// TODO Auto-generated method stub
+		return operations.get("isNodeRemovalRequested");
+	}
+
+
+	public boolean isEdgeRemovalSimulation() {
+		// TODO Auto-generated method stub
+		return operations.get("isEdgeRemovalRequested");
 	}
     
 }

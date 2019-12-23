@@ -76,13 +76,13 @@ public class ArgumentParser {
 				for (String string : cmd.getOptionValue(simulations.getOpt()).split(",")) {
 					switch (string) {
 					case "n":
-						parameters.setIsNodeRemovalSimulationFlag();
+						parameters.setNodeRemovalSimulationFlag();
 						break;
 					case "e":
-						parameters.setIsEdgeRemovalSimulationFlag();
+						parameters.setEdgeRemovalSimulationFlag();
 						break;
 					case "v":
-						parameters.setIsSISSimulationFlag();
+						parameters.setSISSimulationFlag();
 						break;
 					default:
 						break;
