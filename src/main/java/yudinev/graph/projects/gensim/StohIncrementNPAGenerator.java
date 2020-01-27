@@ -67,8 +67,15 @@ public class StohIncrementNPAGenerator<V, E> implements GraphGenerator<V, E> {
 	@Override
 	public Graph<V, E> create() {
 		layers = new HashMap();
-		g=createSeedGrh(9);
+		g=createSeedGrh(10);
+		int[] tr = Statistics.getTriAndVilk2(g);
+		
+		System.out.println("initial C="+tr[0] * 3. / tr[1]);
+
+		System.out.println();
+		boolean flag= false;
 		do {
+			
 			double sum = getSum();
 			if (Math.random() < gamma) {
 				V a = vertexFactory.create();
@@ -127,6 +134,17 @@ public class StohIncrementNPAGenerator<V, E> implements GraphGenerator<V, E> {
 					addEdge(newVertex, v);
 				}
 			}
+		/*	if(g.getVertexCount()%5000==0) {
+				int[] m = Statistics.getTriAndVilk2(g);
+				System.out.println(""+m[0] * 3. / m[1]);
+				flag= true;
+			} else if((g.getVertexCount()%5000==1)&&!flag) {
+				int[] m = Statistics.getTriAndVilk2(g);
+				System.out.println(""+m[0] * 3. / m[1]);
+				flag=false;
+			} else flag=false;
+			
+			*/
 		}
 		while(g.getVertexCount()<numVertices);
 		
@@ -135,14 +153,27 @@ public class StohIncrementNPAGenerator<V, E> implements GraphGenerator<V, E> {
 
 	private Graph<V, E> createSeedGrh(int m) {
 		g = graphFactory.create();
-		V[] mass = (V[]) new Object[m];
-		for (int i = 0; i < mass.length; i++) {
-			mass[i] = vertexFactory.create();
-			addVertex(mass[i]);
+		int n = m*2;
+		V[] mass1 = (V[]) new Object[m];
+		V[] mass2 = (V[]) new Object[m];
+		
+		
+		
+		for (int i = 0; i < mass1.length; i++) {
+			mass1[i] = vertexFactory.create();
+			addVertex(mass1[i]);
+			mass2[i] = vertexFactory.create();
+			addVertex(mass2[i]);
+
+			
 		}
-		for (int i = 0; i < mass.length - 1; i++) {
-			for (int j = i + 1; j < mass.length; j++) {
-				addEdge(mass[i], mass[j]);
+		for (int i = 0; i < mass1.length-1; i++) {
+			addEdge(mass1[i], mass1[i+1]);
+			addEdge(mass2[i], mass2[i+1]);
+		}
+		for (int i = 0; i < mass1.length; i++) {
+			for (int j = 1; j < 4; j++) {
+				addEdge(mass1[i], mass2[(i+j)%m]);
 			}
 		}
 		return g;
@@ -169,7 +200,7 @@ public class StohIncrementNPAGenerator<V, E> implements GraphGenerator<V, E> {
 				s=s+mass[j];
 				if(s>r)		return j;
 		 }
-		throw new IllegalMonitorStateException("Проблемы при генерации слоев");
+		throw new IllegalStateException("Проблемы при генерации слоев");
 	}
 
 	private double getSum() {

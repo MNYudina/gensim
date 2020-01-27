@@ -61,7 +61,10 @@ public class PAGenerator<V, E> implements GraphGenerator<V, E> {
 	@Override
 	public Graph<V, E> create() {
 		layers = new HashMap();
-		g=createSeedGrh(4);
+		g=createSeedGrh(9);
+		int[] tr0= Statistics.getTriAndVilk2(g);
+		System.out.println("initial"+tr0[0] * 3. / tr0[1]);
+
 		do {
 			int m=getM();
 			V newVertex = vertexFactory.create();
@@ -71,10 +74,17 @@ public class PAGenerator<V, E> implements GraphGenerator<V, E> {
 				List<V> l = getRandomLayer(sum);
 				V v = l.get(mRandom.nextInt(l.size()));
 				setV.add(v);
+				
+				
 			} while (setV.size() < m);
 			addVertex(newVertex);
 			for (V v : setV) {
 				addEdge(newVertex,v);
+			}
+			
+			if(g.getVertexCount()%5000==0) {
+				int[] tr = Statistics.getTriAndVilk2(g);
+				System.out.println(""+tr[0] * 3. / tr[1]);
 			}
 
 		}while(g.getVertexCount()<numVertices);

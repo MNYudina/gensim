@@ -282,6 +282,15 @@ public class Statistics {
 		return ret;
 	}
 
+	public static int getMaxDegree(Graph<Integer, Integer> graph) {
+		int max=0;
+		for (Integer v : graph.getVertices()) {
+			if(max<graph.degree(v))max=graph.degree(v);
+		}
+		// TODO Auto-generated method stub
+		return max;
+	}
+
 	
 	
 }

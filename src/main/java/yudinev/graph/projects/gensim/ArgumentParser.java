@@ -33,7 +33,7 @@ public class ArgumentParser {
 		vDistr = OptionBuilder.withType(Integer.class).isRequired(false).hasArg(true).withLongOpt("v_distr")
 				.withDescription("This parameter sets number of runs used by sampling algorithms only.").create("d");
 		eDistr = OptionBuilder.withType(Integer.class).isRequired(false).hasArg(true).withLongOpt("e_dister")
-				.withDescription("This parameter sets number of parallel threads.").create("e");
+				.withDescription("This parameter sets number of parallel threads.").create("l");
 		options = new Options().addOption(graphPath).addOption(simulations).addOption(vDistr).addOption(eDistr);
 		help = new HelpFormatter();
 	}
