@@ -1,0 +1,1 @@
+java -jar target/gensim-0.0.1.jar visBA

@@ -17,6 +17,8 @@ import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.io.PajekNetReader;
+import vis.AddNodeBADemo;
+import vis.AddNodeStohDemo2;
 
 /**
  * Main Class of the project
@@ -111,7 +113,8 @@ public class App {
 	 * <code>yudinev.graph.projects.gensim.ArgumentParser</code> instance.
 	 * 
 	 * @author yudinev, Gleepa
-	 * @param args input arguments
+	 * @param args
+	 *            input arguments
 	 * @see yudinev.graph.projects.gensim.ArgumentParser#parseCmdParameters(String[])
 	 * @return the instance of
 	 *         <codeyudinev.graph.projects.gensim.ProgramParameters</code> if input
@@ -451,7 +454,8 @@ public class App {
 				870.7565027 };
 
 		Function<Integer, Double> pn2 = k -> {
-//--------------------старая функция предпочтения-------------------------------	
+			// --------------------старая функция
+			// предпочтения-------------------------------
 			if (d_pn2.length > k)
 				return d_pn2[k];
 			return 0.;
@@ -502,8 +506,19 @@ public class App {
 		return gn.create();
 	}
 
-
 	public static void main(String[] args) throws IOException {
+	
+	
+	 if(args.length>0&&args[0].equals("visBA")){
+		 AddNodeBADemo.main(null);
+		 return;
+	 }
+	 else if(args.length>0&&args[0].equals("visNPA")){
+		AddNodeStohDemo2.main(null);
+		return;
+	 }
+		
+		
 		Graph<Integer, Integer> graph;
 		// graph = Statistics.loadGraph("graph/myAs.net");
 		graph = getNPAGraph_EDC(22963);

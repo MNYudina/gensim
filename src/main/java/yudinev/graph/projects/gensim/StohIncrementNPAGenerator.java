@@ -19,7 +19,7 @@ import edu.uci.ics.jung.graph.UndirectedGraph;
  * граф Барабаши-Альберт (Shrek 2) использует генерацию дискретной случайной
  * величины для выбора очередной вершины для присоединения
  * 
- * @author Shrek
+ * @author MNYudina
  * 
  * @param <V> вершины
  * @param <E> ребра
